@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      background-color: rgb(239, 196, 116);
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .calculator {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 10px rgb(226, 168, 61);
+    }
+
+    #calinput {
+      width: 100%;
+      height: 50px;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      padding: 5px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="button"] {
+      flex: 1;
+      height: 60px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    input[type="button"]:hover {
+      opacity: 0.8;
+    }
+
+    .operator {
+      background-color: rgb(226, 168, 61);
+      color: white;
+    }
+
+    .equal {
+      background-color: green;
+      color: white;
+    }
+
+    .clear {
+      background-color: rgb(154, 2, 2);
+      color: white;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      input[type="button"] {
+        height: 50px;
+        font-size: 1rem;
+      }
+
+      #a {
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1><i>Calculator</i></h1>
+
+  <div class="calculator">
+    <input type="text" id="calinput" readonly />
+
+    <div class="row">
+      <input type="button" value="7" onclick="pick(7)">
+      <input type="button" value="8" onclick="pick(8)">
+      <input type="button" value="9" onclick="pick(9)">
+      <input type="button" value="/" onclick="pick('/')" class="operator">
+    </div>
+
+    <div class="row">
+      <input type="button" value="4" onclick="pick(4)">
+      <input type="button" value="5" onclick="pick(5)">
+      <input type="button" value="6" onclick="pick(6)">
+      <input type="button" value="*" onclick="pick('*')" class="operator">
+    </div>
+
+    <div class="row">
+      <input type="button" value="1" onclick="pick(1)">
+      <input type="button" value="2" onclick="pick(2)">
+      <input type="button" value="3" onclick="pick(3)">
+      <input type="button" value="-" onclick="pick('-')" class="operator">
+    </div>
+
+    <div class="row">
+      <input type="button" value="." onclick="pick('.')">
+      <input type="button" value="0" onclick="pick(0)">
+      <input type="button" value="=" onclick="solve()" class="equal">
+      <input type="button" value="+" onclick="pick('+')" class="operator">
+    </div>
+
+    <div class="row">
+      <input type="button" value="AC" onclick="clr()" class="clear">
+    </div>
+  </div>
+
+  <script>
+    function pick(val) {
+      document.getElementById("calinput").value += val;
+    }
+
+    function clr() {
+      document.getElementById("calinput").value = "";
+    }
+
+    function solve() {
+      try {
+        var x = document.getElementById("calinput").value;
+        var y = eval(x);
+        document.getElementById("calinput").value = y;
+      } catch (err) {
+        document.getElementById("calinput").value = "Error";
+      }
+    }
+  </script>
+</body>
+</html>
